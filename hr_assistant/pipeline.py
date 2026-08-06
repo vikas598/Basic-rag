@@ -12,6 +12,7 @@ from hr_assistant.vector_store import (
     vector_store_exists
 )
 from hr_assistant.logger import get_logger
+from hr_assistant.tracing import check_langsmith_tracing
 
 logger = get_logger(__name__)
 
@@ -37,6 +38,7 @@ def build_hr_assistant(file_path:str = config.DATA_FILE_PATH):
     """Build the full RAG agent, ready to answer questions."""
     logger.info("Building HR assistant from document '%s'", file_path)
     config.check_api_keys()
+    check_langsmith_tracing()
 
     vector_store = build_vector_store_for_document(file_path)
     retriver = get_retriver(vector_store)

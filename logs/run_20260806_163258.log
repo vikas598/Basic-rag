@@ -1,0 +1,49 @@
+2026-08-06 16:32:59,681 | INFO | hr_assistant.pipeline | Building HR assistant from document 'data\hr_policy.txt'
+2026-08-06 16:32:59,682 | INFO | hr_assistant.tracing | Langsmith tracing is enabled. Endpoint: https://apac.api.smith.langchain.com, Project: hr_policy_assistant
+2026-08-06 16:32:59,682 | INFO | hr_assistant.vector_store | Checking if FAISS index exists at 'data\faiss_index'
+2026-08-06 16:32:59,683 | INFO | hr_assistant.pipeline | Found a saved vector store on disk, reusing it.
+2026-08-06 16:32:59,683 | INFO | hr_assistant.vector_store | Loading FAISS index from disk at 'data\faiss_index'
+2026-08-06 16:32:59,683 | INFO | hr_assistant.embedding | Initializing embedding model 'jina-embeddings-v2-base-en'
+2026-08-06 16:32:59,687 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-08-06 16:32:59,688 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-08-06 16:32:59,688 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-06 16:32:59,688 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-06 16:32:59,688 | INFO | faiss.loader | Loading faiss.
+2026-08-06 16:32:59,726 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-06 16:32:59,739 | INFO | hr_assistant.vector_store | Creating retriever for vector store with top-3 results
+2026-08-06 16:32:59,744 | INFO | hr_assistant.llm | Initialzing LLM model 'openai/gpt-oss-20b'
+2026-08-06 16:33:00,874 | INFO | hr_assistant.agent | Creating HR agent with LLM model 'openai/gpt-oss-20b' and 1 tools
+2026-08-06 16:33:00,884 | INFO | hr_assistant.agent | HR agent created successfully
+2026-08-06 16:33:00,885 | INFO | hr_assistant.pipeline | HR assistant built successfully and ready to answer questions
+2026-08-06 16:34:28,732 | INFO | __main__ | ===Streamlit run started : new question ===
+2026-08-06 16:34:28,734 | INFO | hr_assistant.pipeline | Asking agent question: hello, who are you?
+2026-08-06 16:34:29,479 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:34:29,509 | INFO | hr_assistant.pipeline | Final answer from agent: Hello! I’m your friendly HR assistant here at Acmecrop. I’m here to help you with any questions you have about our policies, benefits, or workplace procedures. How can I assist you today?
+2026-08-06 16:34:29,511 | INFO | __main__ | ===Streamlit run finished : question answered ===
+2026-08-06 16:35:09,208 | INFO | __main__ | ===Streamlit run started : new question ===
+2026-08-06 16:35:09,210 | INFO | hr_assistant.pipeline | Asking agent question: tell me about holiday policy
+2026-08-06 16:35:09,427 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:35:09,436 | INFO | hr_assistant.tools | serch_hr_policy tool invoked with question: holiday policy
+2026-08-06 16:35:14,305 | INFO | hr_assistant.tools | Found 3 matching chunks
+2026-08-06 16:35:15,163 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:35:15,170 | INFO | hr_assistant.pipeline | Final answer from agent: **Holiday Policy – Acmecrop**
+
+| Item | Details |
+|------|---------|
+| **Public Holidays** | 12 official public holidays each calendar year. The full holiday calendar is published by HR at the start of the year. |
+| **Compensatory Leave** | If you work on a public holiday, you’re eligible for a compensatory day off. |
+| **Annual Paid Leave** | 20 days of paid annual leave per calendar year for full‑time employees. |
+| **Advance Notice** | Submit leave requests via the HR portal **at least 5 working days** before the intended start date. |
+| **Carry‑Forward** | Unused annual leave can be carried forward **up to 5 days** into the next year. |
+| **Sick Leave** | Separate from annual leave: 10 paid sick days per year. A medical certificate is required for sick leave longer than 2 consecutive days. |
+
+**Quick Tips**
+
+- Check the official holiday calendar early in the year to plan vacations around public holidays.
+- If you need to work on a public holiday, let your manager know so you can claim compensatory leave.
+- Remember to submit your annual leave requests early to avoid last‑minute scheduling conflicts.
+
+If you have any more questions or need help with a specific holiday or leave request, just let me know!
+2026-08-06 16:35:15,172 | INFO | __main__ | ===Streamlit run finished : question answered ===
