@@ -1,7 +1,9 @@
 import streamlit as st
 
 from hr_assistant.pipeline import ask, build_hr_assistant
+from hr_assistant.logger import get_logger
 
+logger = get_logger(__name__)
 
 st.set_page_config(page_title="HR Policy Assistant", page_icon="🤖")
 st.title("🤖 HR Policy Assistant")
@@ -27,6 +29,7 @@ for message in st.session_state.messages:
 question = st.chat_input("Ask a question about HR policy...")
 
 if question:
+    logger.info("===Streamlit run started : new question ===")
     st.session_state.messages.append({"role": "user", "content": question})
     with st.chat_message("user"):
         st.markdown(question)
@@ -35,4 +38,5 @@ if question:
         with st.spinner("Thinking..."):
             answer = ask(agent, question)
         st.markdown(answer)
+    logger.info("===Streamlit run finished : question answered ===")
     st.session_state.messages.append({"role": "assistant", "content": answer})

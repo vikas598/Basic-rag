@@ -1,0 +1,50 @@
+2026-08-06 16:05:20,058 | INFO | hr_assistant.pipeline | Building HR assistant from document 'data\hr_policy.txt'
+2026-08-06 16:05:20,059 | INFO | hr_assistant.vector_store | Checking if FAISS index exists at 'data\faiss_index'
+2026-08-06 16:05:20,060 | INFO | hr_assistant.pipeline | No saved vector store found, building one from scratch from 'data\hr_policy.txt'
+2026-08-06 16:05:20,075 | INFO | hr_assistant.document_loader | Loaded 1 document(s)
+2026-08-06 16:05:20,076 | INFO | hr_assistant.splitter | Splitting document into chunks of size 500 with overlap 50
+2026-08-06 16:05:20,076 | INFO | hr_assistant.splitter | Split document into 9 chunks
+2026-08-06 16:05:20,077 | INFO | hr_assistant.vector_store | Embedding 9 chunks and building FAISS index
+2026-08-06 16:05:20,078 | INFO | hr_assistant.embedding | Initializing embedding model 'jina-embeddings-v2-base-en'
+2026-08-06 16:05:21,632 | INFO | faiss.loader | Loading faiss with AVX512 support.
+2026-08-06 16:05:21,633 | INFO | faiss.loader | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-08-06 16:05:21,633 | INFO | faiss.loader | Loading faiss with AVX2 support.
+2026-08-06 16:05:21,634 | INFO | faiss.loader | Could not load library with AVX2 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx2'")
+2026-08-06 16:05:21,634 | INFO | faiss.loader | Loading faiss.
+2026-08-06 16:05:21,699 | INFO | faiss.loader | Successfully loaded faiss.
+2026-08-06 16:05:21,808 | INFO | hr_assistant.vector_store | FAISS index built successfully
+2026-08-06 16:05:21,818 | INFO | hr_assistant.vector_store | Saving FAISS index to disk at 'data\faiss_index'
+2026-08-06 16:05:21,844 | INFO | hr_assistant.vector_store | FAISS index saved successfully
+2026-08-06 16:05:21,845 | INFO | hr_assistant.vector_store | Creating retriever for vector store with top-3 results
+2026-08-06 16:05:21,850 | INFO | hr_assistant.llm | Initialzing LLM model 'openai/gpt-oss-20b'
+2026-08-06 16:05:23,128 | INFO | hr_assistant.agent | Creating HR agent with LLM model 'openai/gpt-oss-20b' and 1 tools
+2026-08-06 16:05:23,143 | INFO | hr_assistant.agent | HR agent created successfully
+2026-08-06 16:05:23,143 | INFO | hr_assistant.pipeline | HR assistant built successfully and ready to answer questions
+2026-08-06 16:06:14,640 | INFO | __main__ | ===Streamlit run started : new question ===
+2026-08-06 16:06:14,643 | INFO | hr_assistant.pipeline | Asking agent question: HI
+2026-08-06 16:06:15,166 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:06:15,201 | INFO | hr_assistant.pipeline | Final answer from agent: Hello! 👋 How can I help you today?
+2026-08-06 16:06:15,229 | INFO | __main__ | ===Streamlit run finished : question answered ===
+2026-08-06 16:06:30,086 | INFO | __main__ | ===Streamlit run started : new question ===
+2026-08-06 16:06:30,088 | INFO | hr_assistant.pipeline | Asking agent question: tell me about leave policy
+2026-08-06 16:06:30,564 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:06:30,572 | INFO | hr_assistant.tools | serch_hr_policy tool invoked with question: leave policy
+2026-08-06 16:06:31,106 | INFO | hr_assistant.tools | Found 3 matching chunks
+2026-08-06 16:06:31,841 | INFO | httpx | HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-06 16:06:31,844 | INFO | hr_assistant.pipeline | Final answer from agent: Sure thing! Here’s a quick rundown of Acmecrop’s leave policy:
+
+| Type of Leave | Entitlement | How to Request | Notes |
+|---------------|-------------|----------------|-------|
+| **Annual (Paid) Leave** | 20 days per calendar year | Submit through the HR portal at least **5 working days** in advance | Unused days can be carried forward up to **5 days** into the next year. |
+| **Sick Leave** | 10 paid days per year | Same portal process | If you’re out for more than **2 consecutive days**, a medical certificate is required. |
+
+**Key points to remember**
+
+- **Advance notice**: Always give at least 5 working days’ notice for annual leave.  
+- **Carry‑over limit**: You can roll over a maximum of 5 unused annual days to the next year.  
+- **Sick leave documentation**: For absences longer than 2 days, attach a doctor’s note.  
+
+If you have any more questions—like how to apply for a leave or what happens if you’re on probation—just let me know!
+2026-08-06 16:06:31,847 | INFO | __main__ | ===Streamlit run finished : question answered ===
