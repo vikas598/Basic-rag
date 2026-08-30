@@ -6,7 +6,6 @@ from hr_assistant.splitter import split_into_chunks
 from hr_assistant.tools import create_search_tool
 from hr_assistant.vector_store import (
     build_vector_store,
-    save_vector_store,
     get_retriver,
     load_vector_store,
     vector_store_exists
@@ -17,23 +16,26 @@ from hr_assistant.guardrails import check_input, check_output, REFUSAL_MSG
 
 logger = get_logger(__name__)
 
+# data ingestion
+
 def build_vector_store_for_document(file_path: str = config.DATA_FILE_PATH):
     """Load + split+ embed the document, resuing a saved index if we have one"""
     if vector_store_exists():
-        print("Found a saved vector store on disk, loading it (fast, no re-embedding).")
-        logger.info("Found a saved vector store on disk, reusing it.")
+        print("Found a Qdrant collection, loading it (fast, no re-embedding).")
+        logger.info("Found a Qdrant collection, reusing it.")
         return load_vector_store()
 
-    print("No saved vector store found, building one from scratch...")
-    logger.info("No saved vector store found, building one from scratch from '%s'", file_path)
+    print("No qdrant collection found, building one from scratch...")
+    logger.info("No qdrant collection found, building one from scratch ")
     documents = load_document(file_path)
     chunks= split_into_chunks(documents)
     print(f"Loaded '{file_path}' and split it into {len(chunks)} chunks.")
 
     vector_store= build_vector_store(chunks)
-    save_vector_store(vector_store)
-    print("Vector store build and saved to disk for the next time")
+    print("Vector store build and uploaded tgo Qdrant cloud")
     return vector_store
+
+# DATA retrieval
 
 def build_hr_assistant(file_path:str = config.DATA_FILE_PATH):
     """Build the full RAG agent, ready to answer questions."""
