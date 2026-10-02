@@ -36,7 +36,7 @@ def load_vector_store():
     embeddings_model = get_embeddings_model()
     # allow_dangerous_deserialization is safe here because we only ever load
     # an index that this same app created and saved. 
-    return QdrantVectorStore.from_documents(
+    return QdrantVectorStore.from_existing_collection(
             embedding= embeddings_model,
             url= config.QDRANT_URL,
             api_key=config.QDRANT_API_KEY,

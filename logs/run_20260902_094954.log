@@ -1,0 +1,3 @@
+2026-09-02 09:50:05,440 | INFO | hr_assistant.pipeline | Building HR assistant from document 'data\hr_policy.txt'
+2026-09-02 09:50:05,442 | INFO | hr_assistant.tracing | Langsmith tracing is enabled. Endpoint: https://apac.api.smith.langchain.com, Project: hr_policy_assistant
+2026-09-02 09:50:07,859 | INFO | httpx | HTTP Request: GET https://a0f93e8e-f066-4271-96bc-7f0f066b0924.eu-west-2-0.aws.cloud.qdrant.io:6333 "HTTP/1.1 200 OK"

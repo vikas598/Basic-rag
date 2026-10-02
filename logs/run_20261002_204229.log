@@ -1,0 +1,2 @@
+2026-10-02 20:43:05,662 | INFO | hr_assistant.pipeline | Building HR assistant from document 'data\hr_policy.txt'
+2026-10-02 20:43:05,663 | INFO | hr_assistant.tracing | Langsmith tracing is enabled. Endpoint: https://apac.api.smith.langchain.com, Project: hr_policy_assistant

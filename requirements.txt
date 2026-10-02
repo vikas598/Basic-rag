@@ -18,3 +18,9 @@ streamlit
 
 #logging
 lark
+
+# LLM GATEWAYS
+portkey-ai
+langchain-openai
+
+
