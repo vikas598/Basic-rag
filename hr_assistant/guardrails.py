@@ -1,6 +1,6 @@
 from hr_assistant import config
 import json
-from langchain_groq import ChatGroq
+from hr_assistant.gateway import get_gateway_guard_llm
 from hr_assistant.logger import get_logger
 
 
@@ -10,12 +10,7 @@ REFUSAL_MSG = "Sorry, I can't help you with that request"
 
 # private varibales , private methods 
 
-_guard_llm = ChatGroq(
-    model=config.GUARD_MODEL_NAME,
-    temperature=0,
-    model_kwargs={"response_format": {"type": "json_object"}},
-)
-
+_guard_llm = get_gateway_guard_llm()
 
 
 ##

@@ -52,3 +52,16 @@ def get_gateway_llm() -> ChatOpenAI:
         base_url=PORTKEY_GATEWAY_URL,
         default_headers=headers
     )
+
+def get_gateway_guard_llm() -> ChatOpenAI:
+    """return gurad model from portkeyt"""
+    logger.info("Routing guradrail calls through Portkey (primary=@hrpolicy-gurad, fallback=@hrpolicy-guard-fallback)")
+    headers = createHeaders(api_key=config.PORTKEY_API_KEY,
+                            provider="@hrpolicy-gurad")
+                           
+    return ChatOpenAI(
+        model="openai/gpt-oss-safeguard-20b",
+        api_key="dummy",
+        base_url=PORTKEY_GATEWAY_URL,
+        default_headers=headers
+    )
