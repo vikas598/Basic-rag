@@ -15,7 +15,7 @@ PRIMARY_TARGET = {
     "provider":"@hrpolicy",
     "override_params": {"model": config.LLM_MODEL_NAME}
 }
-
+PRIMARY_PROVIDER = "@hrpolicy"
 #backup model
 FALLBACK_TARGET = {
     "provider":"@hrpolicybackup",
